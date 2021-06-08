@@ -1,7 +1,10 @@
 # Delete all files in a folder which are older than the specified number days.
 
-# Deploy:
+# Deploy (Linux):
 # cp -u folder_cleanup.py /home/matt/Scripts
+
+# Deploy (Windows):
+# cp -u folder_cleanup.py /mnt/c/Users/MatthewCallahan/Scripts
 
 import os
 import logging
@@ -17,7 +20,12 @@ cleanupFolders = [
 def main():
     # name the log file as "{this_filename}.log"
     logFileName = f'{os.path.splitext(os.path.basename(__file__))[0]}.log'
-    configureLogger(logFileName)
+    logFilePath = os.path.join(os.path.dirname(__file__), logFileName)
+    
+    if os.path.exists(logFilePath):        
+        os.remove(logFilePath)
+    
+    configureLogger(logFilePath)
 
     for folder in cleanupFolders:
         deleteFilesInFolder(folder)
@@ -29,17 +37,14 @@ def main():
 
     logging.info('Folder cleanup complete.')
 
-def configureLogger(logFileName):
+def configureLogger(logFilePath):
     logging.basicConfig(
-        filename=logFileName,
+        filename=logFilePath,
         filemode='w', # overwrite the log file contents each time
         format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
         datefmt='%m/%d/%Y %H:%M:%S',
         level=logging.DEBUG
     )
-
-    if os.path.exists(logFileName):
-        os.remove(logFileName)
 
 def deleteFilesInFolder(cleanupFolder):
     now = datetime.datetime.now()
