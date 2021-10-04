@@ -13,7 +13,7 @@ from types import SimpleNamespace
 
 cleanupFolders = [
     SimpleNamespace(path = '/home/matt/Temp', days = 7, errors = []),
-    SimpleNamespace(path = '/home/matt/Download', days = 30, errors = []),
+    SimpleNamespace(path = '/home/matt/Downloads', days = 30, errors = []),
     SimpleNamespace(path = '/home/matt/Desktop', days = 1, errors = [])
 ]
 
