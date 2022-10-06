@@ -1,11 +1,5 @@
 # Delete all files in a folder which are older than the specified number days.
 
-# Deploy (Linux):
-# cp -u folder_cleanup.py /home/matt/Scripts
-
-# Deploy (Windows):
-# cp -u folder_cleanup.py /mnt/c/Users/MatthewCallahan/Scripts
-
 import os
 import logging
 import datetime
@@ -72,3 +66,4 @@ def deleteEmptyFolders(cleanupFolder):
 
 if __name__ == "__main__":
     main()
+
